@@ -1,4 +1,5 @@
-# Electron-React with typescript
+# Electron-React with typescript 
+## This repo uses electron builder to pack the electrion app
   This repo is exact clone of [Kitze Blog](https://medium.com/@kitze/%EF%B8%8F-from-react-to-an-electron-app-ready-for-production-a0468ecb1da3) this Medium blog with extra typescript configuration added into it.
   
   ## Thing I have added:
