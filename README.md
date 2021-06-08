@@ -1,46 +1,25 @@
-# Getting Started with Create React App
+# Electron-React with typescript
+  This repo is exact clone of [Kitze Blog](https://medium.com/@kitze/%EF%B8%8F-from-react-to-an-electron-app-ready-for-production-a0468ecb1da3) this Medium blog with extra typescript configuration added into it.
+  
+  ## Thing I have added:
+  - created project with: `npx create-react-app my-app --template typescript` instead of `npx create-react-app my-app`
+  - all the `yarn` commands are changed to `npm`
+  - created `.env` file in root directory to prevent react-script from opening the browser. (inline `BROWSER=none` did not worked as instructed in blog so this approach is followed)
+  - new tsconfig is created inside of public folder so that we can use that tsconfig file to watch electron's .ts code files. (note: .js file of electrons .ts code file will be generated next to the .ts file)
+  - inside of `public/tsconfig` i have changed `"target":"es5"`to `"target":"es6"` . Because while writing code using electron class it require to be of es6 class.
+  - added new script to package.json `"watch-tsc-public": "tsc --watch --project public",` . This typescript(ts) run script watch the public folder for any change in .ts files. 
+  - modified electron-dev command to: `"electron-dev": "concurrently \"npm run watch-tsc-public\" \"npm start\" \"wait-on http://localhost:3000 && electron .\""` so that typescript(ts) start watching public folder for any changes.
+  - Changed `electron.js` to `electron.ts` in public folder.
+ 
+ Thats it, no further changes are done. You can follow [Kitze Blog](https://medium.com/@kitze/%EF%B8%8F-from-react-to-an-electron-app-ready-for-production-a0468ecb1da3) for more indepth knowledge of whats happening in this code. What I have done is just add typescript on top of it. 
+ 
+ #### Note: When running react build `create react app` will generate the prod. code in `build` folder and the same `build` folder is used by `electron builder` to load icons for our electron app which created a conflict between `electron builder` and `create react app` so the [Kitze Blog](https://medium.com/@kitze/%EF%B8%8F-from-react-to-an-electron-app-ready-for-production-a0468ecb1da3) recomended to modify the build option of `electron builder` to accept the icons and other require files from `assets` folder rather than from `build`. The build option of electron builder is modified by adding build object in package.json. I have already done this so no need to redo this is just for just informing you.
+ 
+ ## Usage Commands
+ - `npm run electron-dev` : to run everything typescript(ts) watch public folder, start react dev server and start electron.
+ - `npm run preelectron-pack` : to run react build script
+ - `npm run electron-pack`: to pack the electron app with electron builder. There are many configuration to take care of if you want to pack this application for cross platform so go through the electron builder docs.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Go througth the blog if you have any confusion.
+ 
+ Happy Electroning!!! 😉😉
