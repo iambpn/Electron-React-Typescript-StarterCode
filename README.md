@@ -5,6 +5,10 @@
   ## How to use this repo?
   Clone or Download this repo and open console inside of this repo and run `npm install` to install all the required dependency.
   
+  ***Note: If you ar in windows then you need to install electron-builder as global dependency. You can install using:***
+  
+  `npm i -g electron-builder`.
+  
   ## Thing I have added:
   - created project with: `npx create-react-app my-app --template typescript` instead of `npx create-react-app my-app`
   - all the `yarn` commands are changed to `npm`
